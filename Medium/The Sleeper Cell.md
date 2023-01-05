@@ -1,11 +1,12 @@
 ## The Sleeper Cell
 ![TheSleeperImage](https://hacktoria.com/wp-content/uploads/2023/01/pixelcover-the-sleeper-cell-768x768.png)  
 This [Hacktoria Contract](https://hacktoria.com/contracts/the-sleeper-cell/) dropped on 04 Jan 2023
-# Preamble  
+### Preamble  
 We are presented with a scenario which I'll let you read for yourself - TLDR; Derek a sleeper with the Androktasiai Terrorist group has received activation orders.  
-Let's head straight into the briefing...  
-```
+Let's head straight into the briefing... 
+
 ### Briefing
+```
 Greetings, Special Agent K.
 
 We have an urgent matter on our hands. For several months we’ve been investigating a group called “Androktasiai”. A radical organization who believes in cleansing the planet of what they call gluttony. Believing firmly that humans are a disease that needs to be exterminated, this radical group is well organized and is preparing to strike several targets.
@@ -24,7 +25,9 @@ SSB1cmdzIG9rZSBscGlhIHR2cHYgbXluIGhzZGUgaWxlaHJyaSB5b212ZCB3dWcgZXAgaHJ4IHdnemRh
 ```
 We are also given the information that the flag to unlock the contract card is in the format ((this-is-the-flag))
 
-This looks like stonewall Base64 encoding and time to call up your favourite decoder. In this case I used one of my favourites, and a Swiss Army tool of multiple encoding, encryption and forensic utilities, [Cyber Chef](https://gchq.github.io/CyberChef/)
+### Solving
+
+This looks like stonewall Base64 encoding given the range of upper and lower case characters and numbers and so time to call up your favourite decoder. In this case I used one of my favourites, and a Swiss Army tool of multiple encoding, encryption and forensic utilities, [Cyber Chef](https://gchq.github.io/CyberChef/)
 
 Sure enough the 'Magic' module confirms Base64 and decodes the email...
 ```
@@ -33,6 +36,6 @@ I urgs oke lpia tvpv myn hsde ilehrri yomvd wug ep hrx wgzda ayuvonr shwkmn (vi 
 
 Well, so far, so good, but clearly work to do. A couple of observations immediately jump out. The first is that we can see the flag format **((ChFa-Atidvxd-33.953417,-118.338863,18))** in the encrypted text and without going any further we can whack those co-ords into Google Maps (other mapping tools are available) and find that they may relate to the home of the LA Rams, **SoFi-Stadium**. Now if time is of the essence you might want to have a punt on ChFa-Atidvxd decoding to SoFi-Stadium - but where's the fun in that?
 
-Move on to the second observation. The word length and overall structure suggest that we are dealing with a shift cipher of some sort. You can either try ROT-13 or observe that there are at least 6 occurrences of single letter words being enciphered to different letters, to convince yourself that we are dealing with a variable shift pattern using a key. Something like a [Vigenere Cipher](https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher). Which is a good place to start. If you have some known plaintext, or even have something that might be used as a key (like a name), you might want to start with that and see what works. The approach I used in this case was to use one of my go-to online tools. - [https://www.guballa.de/vigenere-solver](https://www.guballa.de/vigenere-solver). This tool is excellent if you are decoding into plaintext English (or German/French/Dutch/Spanish or Portuguese). Health warning it is not good at decoding URLs or things it won't recognise as normal language.
+Move on to the second observation. The word length and overall structure suggest that we are dealing with a shift cipher of some sort. You can either try ROT-13 or observe that there are at least 6 occurrences of single letter words being enciphered to different letters, to convince yourself that we are dealing with a variable shift pattern using a key. Something like a [Vigenere Cipher](https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher). Which is a good place to start. So working off that hypothesis, first thing we need to do is determine the key. If you have some known plaintext, or even have something that might be used as a key (like a name), you might want to start with that and see what works. The approach I used in this case was to use one of my go-to online tools. - [https://www.guballa.de/vigenere-solver](https://www.guballa.de/vigenere-solver) to brute force it. This tool is excellent if you are decoding into plaintext English (or German/French/Dutch/Spanish or Portuguese). Health warning it is not good at decoding URLs or things it won't recognise as normal language.
 
 Sure enough - I pasted enough ciphertext to cover more than the length of a possible key into the tool and up popped some plaintext with the key it had found 'Androktasiai'. Using that I could decode the whole message confirming the target and the flag - ((SoFi-Stadium-33.953417,-118.338863,18))
