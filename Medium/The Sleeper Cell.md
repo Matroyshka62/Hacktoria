@@ -1,5 +1,5 @@
 ## The Sleeper Cell
-![TheSleeperImage]([https://hacktoria.com/wp-content/uploads/2023/01/pixelcover-the-sleeper-cell-768x768.png](https://hacktoria.com/wp-content/uploads/2023/01/sleeper-cell-cyberpixel.png))  
+![TheSleeperImage](https://hacktoria.com/wp-content/uploads/2023/01/sleeper-cell-cyberpixel.png) 
 This [Hacktoria Contract](https://hacktoria.com/contracts/the-sleeper-cell/) dropped on 04 Jan 2023
 ### Preamble  
 We are presented with a scenario which I'll let you read for yourself - TLDR; Derek a sleeper with the Androktasiai Terrorist group has received activation orders.  
